@@ -9,6 +9,10 @@
     font-family: 'Poppins', sans-serif;
 }
 
+html, body, .App, #root {
+    height: 100%;
+}
+
 a,
 a:active,
 a:visited,

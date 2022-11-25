@@ -1,0 +1,34 @@
+.body-content {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+}
+.column-header {
+    text-transform: uppercase;
+    padding: 10px 20px;
+}
+
+.column {
+    height: 500px;
+    padding: 20px;
+}
+
+.column-header h3 {
+    color: rgb(128, 128, 128);
+}
+
+.grey-box {
+    background-color: rgb(233, 233, 233);
+    width: 300px;
+    border-radius: 5px;
+}
+
+.headers-container, 
+.columns-container {
+    display: flex;
+    gap: 20px;
+    justify-content: space-around;
+}
