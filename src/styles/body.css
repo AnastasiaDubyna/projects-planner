@@ -1,17 +1,15 @@
 .body-content {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 50px;
+    margin: auto;
+    margin-top: 50px;
+    width: 90%;
 }
 .column-header {
     text-transform: uppercase;
     padding: 10px 20px;
+    margin-bottom: 20px;
 }
 
-.column {
+.column-body {
     height: 500px;
     padding: 20px;
 }
@@ -22,13 +20,6 @@
 
 .grey-box {
     background-color: rgb(233, 233, 233);
-    width: 300px;
+    width: 100%;
     border-radius: 5px;
-}
-
-.headers-container, 
-.columns-container {
-    display: flex;
-    gap: 20px;
-    justify-content: space-around;
 }

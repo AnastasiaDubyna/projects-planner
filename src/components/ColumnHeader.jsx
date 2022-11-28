@@ -4,11 +4,14 @@ class ColumnHeader extends Component {
     constructor(props) {
         super(props);
     }
-    
+
     render() { 
+        
+        const {title, quantity} = this.props;
+
         return ( 
             <div className="column-header grey-box">
-                <h3>{this.props.title} {this.props.quantity}</h3>
+                <h3>{title} {quantity}</h3>
             </div>
         );
     }
