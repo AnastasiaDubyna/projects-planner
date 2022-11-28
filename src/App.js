@@ -1,12 +1,12 @@
-import Body from './components/Body.jsx';
 import Header from './components/Header.jsx';
 import './styles/styles.js';
+import MainPage from './components/MainPage';
+import BodyContent from './components/BodyContent.jsx';
 
 function App() {
   return (
     <div className="App">
-      <Header />
-      <Body />
+      <MainPage />
     </div>
   );
 }
