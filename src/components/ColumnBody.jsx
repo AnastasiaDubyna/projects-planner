@@ -1,4 +1,6 @@
+import { Box } from '@mui/material';
 import { Component } from 'react';
+import TaskCard from './taskCard/TaskCard';
 
 class ColumnBody extends Component {
     constructor(props) {
@@ -8,11 +10,31 @@ class ColumnBody extends Component {
 
     render() { 
         const {content} = this.props;
-        
+
         return ( 
-            <div className="column-body grey-box">
-                {content}
-            </div>
+            <Box
+                sx={{
+                    overflow: "auto",
+                    height: 600,
+                    padding: 1,
+                    borderRadius: '5px',
+                    backgroundColor: "rgb(233, 233, 233)",
+                    '&::-webkit-scrollbar': {
+                        display: 'none'
+                    },
+                    '&::-webkit-scrollbar': {
+                        display: 'none'
+                    },
+                    '-ms-overflow-style': 'none',  /* IE and Edge */
+                    'scrollbar-width': 'none'
+                }}
+            >
+                
+            {
+                content.map(task => <TaskCard task={task} />)
+            }
+            </Box>
+            
         );
     }
 }

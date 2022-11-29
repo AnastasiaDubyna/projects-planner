@@ -6,23 +6,15 @@ import CreateForm from './CreateForm';
 class Header extends Component {
     constructor(props) {
         super(props);
-        this.state = { searchValue: "", anchorEl: null }
-    }
-    setAnchorEl = (val) => {
-        this.setState({anchorEl: val});
+        this.state = { searchValue: ""}
     }
 
-    handleClick = (e) => {
-        console.log("Click");
-        this.setAnchorEl(e.currentTarget);
+    handleClick = () => {
+        this.props.togglePopup();
     }
 
     handleChange = (e) => {
         this.setState({searchValue: e.target.value});
-    }
-
-    handleClose = () => {
-        this.setAnchorEl(null);
     }
 
     render() { 
@@ -35,22 +27,7 @@ class Header extends Component {
                     <span className="material-symbols-outlined">view_kanban</span>
                     <h1>JiraRipOff</h1>
                 </div>
-                <Button aria-describedby={id} variant="contained" onClick={this.handleClick}>
-                    Create
-                </Button>
-                <Popover
-                    // anchorReference={"none"}
-                    id={id}
-                    open={open}
-                    anchorEl={this.state.anchorEl}
-                    onClose={this.handleClose}
-                    anchorOrigin={{
-                    vertical: 'bottom',
-                    horizontal: 'left',
-                    }}
-                >
-                    <CreateForm />
-                </Popover>
+                <Button variant="contained" onClick={this.handleClick}>Create</Button>
                 <input  type="text" value={this.state.searchValue} onChange={this.handleChange} placeholder="Search"/>
             </div>
         );

@@ -1,31 +1,27 @@
 import { Component } from 'react';
-import ColumnBody from './ColumnBody';
-import ColumnHeader from './ColumnHeader';
 import Grid from '@mui/material/Grid';
-// import Item from '@mui/material/Item';
-import Column from './Column';
+import Column from '../Column';
 
 class BodyContent extends Component {
     constructor(props) {
         super(props);
         this.state = {  };
     }
-
-    titles = ["ready for dev", "in progress", "code review", "done"];
-    quantity = [10, 5, 2, 6];
-
     render() { 
-        const {readyForDevTasks} = this.props;
+        const {tasks} = this.props;
         return (
             <div className="body-content">
                 <Grid container spacing={{xs: 5, sm: 5, md: 3}} justifyContent="space-around" justifyItems="center">
-                    {this.titles.map(
-                        (val, index) => 
+                    {Object.keys(tasks).map(
+                        (title, index) => 
                             <Grid item xs={12} sm={6} md={3}>
-                                <Column title={val} quantity={this.quantity[index]} key={`header-${index}`} content="content" />
+                                <Column 
+                                    title={title.replace(/([a-z0-9])([A-Z])/g, '$1 $2')} 
+                                    quantity={tasks[title].length} 
+                                    key={`header-${index}`} 
+                                    content={tasks[title]}  />
                             </Grid>
-                        )
-                    }
+                    )}
                 </Grid>
             </div>
         );

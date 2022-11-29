@@ -1,7 +1,3 @@
-* {
-    color: rgb(25, 94, 94);
-}
-
 .header {
     display: grid;
     grid-template-columns: repeat(12, auto);
