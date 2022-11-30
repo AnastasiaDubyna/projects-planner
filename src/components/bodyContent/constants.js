@@ -1,6 +1,6 @@
-export const stages = {
-    readyForDev: "ready for dev",
-    inProgress: "in progress", 
-    codeReview: "code review", 
-    done: "done"
-}
+export const stages = [
+    { keyName: "readyForDev", titleName: "ready for dev" },
+    { keyName: "inProgress", titleName: "in progress" },
+    { keyName: "codeReview", titleName: "code review" },
+    { keyName: "done", titleName: "done" }
+]

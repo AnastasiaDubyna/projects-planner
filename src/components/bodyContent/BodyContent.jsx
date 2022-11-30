@@ -8,13 +8,13 @@ const BodyContent = ({tasks}) => {
     return (
         <div className="body-content">
             <Grid container spacing={{xs: 5, sm: 5, md: 3}} justifyContent="space-around">
-                {Object.keys(stages).map(
-                    (stageKey) => {
-                        const columnContent = tasks.filter(task => task.stage === stageKey);
+                {stages.map(
+                    (stage) => {
+                        const columnContent = tasks.filter(task => task.stage === stage.keyName);
                         return (
                             <Grid item xs={12} sm={6} md={3} key={nanoid()}>
                                 <Column 
-                                    title={stages[stageKey]} 
+                                    title={stage.titleName} 
                                     quantity={columnContent.length} 
                                     key={nanoid()} 
                                     content={columnContent}  />

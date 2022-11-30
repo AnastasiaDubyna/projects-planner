@@ -4,6 +4,8 @@ import { defaultModalStyle, taskTypes } from '../constants';
 import { nanoid } from 'nanoid';
 import './createFormModal.css'
 
+// переписать стейт
+
 class CreateFormModal extends Component {
     constructor(props) {
         super(props);
@@ -20,11 +22,13 @@ class CreateFormModal extends Component {
     }
 
     handleCancel = (e) => {
-        this.setState({
-            type: "bug", 
-            resume: "", 
+        const resetedState = {
+            type: "bug",
+            resume: "",
             description: ""
-        });
+        };
+
+        this.setState(resetedState);
         this.props.togglePopup();
     }
 
