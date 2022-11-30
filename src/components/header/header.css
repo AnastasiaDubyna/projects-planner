@@ -1,6 +1,4 @@
 .header {
-    display: grid;
-    grid-template-columns: repeat(12, auto);
     padding: 25px 40px;
     border-bottom: 2px solid rgba(233, 233, 233, 0.479);
 }
@@ -35,7 +33,7 @@
     justify-self: end;
     padding: 10px;
     height: 35px;
-    width: 200px;
+    width: auto;
     border-radius: 5px;
     border: 2px solid rgb(233 233 233);
 }

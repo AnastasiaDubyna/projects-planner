@@ -1,27 +1,18 @@
-import { Component } from 'react';
 import { Card, CardContent, Typography } from '@mui/material';
-
 import {icons} from './constants';
 
-class TaskCard extends Component {
-    constructor(props) {
-        super(props);
-    }
+const TaskCard = ({task}) => {
+    const {type, resume} = task;
 
-    state = {  }
-
-    render() {
-        const {type, resume, description} = this.props.task;
-
-        return (
-            <Card variant="outlined">
-                <CardContent>
-                    <Typography>{resume}</Typography>
-                    {icons[type]}
-                </CardContent>
-            </Card>
-        );
-    }
+    return (
+        <Card variant="outlined">
+            <CardContent>
+                <Typography>{resume}</Typography>
+                {icons[type]}
+            </CardContent>
+        </Card>
+    );
+    
 }
  
 export default TaskCard;

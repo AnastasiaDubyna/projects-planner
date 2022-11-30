@@ -1,7 +1,5 @@
-import Header from './components/Header.jsx';
-import './styles/styles.js';
-import MainPage from './components/MainPage';
-import BodyContent from './components/bodyContent/BodyContent.jsx';
+import './App.css';
+import MainPage from './components/mainPage/MainPage';
 
 function App() {
   return (

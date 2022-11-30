@@ -1,0 +1,9 @@
+.column-header {
+    text-transform: uppercase;
+    padding: 10px 20px;
+    margin-bottom: 20px;
+}
+
+.column-header h3 {
+    color: rgb(128, 128, 128);
+}
