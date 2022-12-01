@@ -3,8 +3,11 @@ import Column from '../column/Column';
 import { stages } from './constants';
 import { nanoid } from 'nanoid';
 import './bodyContent.css';
+import { useSelector } from 'react-redux';
 
-const BodyContent = ({tasks}) => {
+const BodyContent = () => {
+    const tasks = useSelector(state => state.tasks);
+    
     return (
         <div className="body-content">
             <Grid container spacing={{xs: 5, sm: 5, md: 3}} justifyContent="space-around">
