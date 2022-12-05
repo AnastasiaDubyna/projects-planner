@@ -7,7 +7,7 @@
 
 # testing
 /coverage
-/src/components/mainPage/testData.js
+testData.js
 
 # production
 /build
