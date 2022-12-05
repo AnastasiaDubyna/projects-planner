@@ -6,7 +6,7 @@ import './bodyContent.css';
 import { useSelector } from 'react-redux';
 
 const BodyContent = () => {
-    const tasks = useSelector(state => state.tasks);
+    const tasks = useSelector(state => state.createTaskReducer.tasks);
     
     return (
         <div className="body-content">

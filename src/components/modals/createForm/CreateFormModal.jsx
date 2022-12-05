@@ -1,40 +1,10 @@
-import { useState } from 'react';
 import { Box, TextField, Button, Modal, InputLabel, MenuItem, FormControl, Select } from '@mui/material';
 import { defaultModalStyle, taskTypes } from '../constants';
 import { nanoid } from 'nanoid';
 import './createFormModal.css'
-import { useDispatch } from 'react-redux';
 
 
-const CreateFormModal = ({togglePopup, openPopup}) => {
-    const initialState = {
-        type: "bug",
-        resume: "",
-        description: ""
-    };
-    const dispatch = useDispatch();
-    const [state, setState] = useState(initialState);
-
-    const handleChange = (e) => {
-        setState({...state, [e.target.name]: e.target.value});
-    }
-
-    const handleCancel = (e) => {
-        setState(initialState);
-        togglePopup();
-    }
-
-    const handleSubmit = (e) => {
-        const newTask = {
-            ...state,
-            stage: "readyForDev",
-            id: nanoid()
-        }; 
-
-        dispatch({type: "ADD_TASK", payload: newTask});
-        setState(initialState);
-        togglePopup();
-    }
+const CreateFormModal = ({togglePopup, openPopup, handleChange, handleCancel, handleSubmit, type, resume, description}) => {
 
     return (
         <Modal
@@ -49,7 +19,7 @@ const CreateFormModal = ({togglePopup, openPopup}) => {
                     <Select
                         labelId="type-label"
                         id="type-select"
-                        value={state.type}
+                        value={type}
                         label="Type"
                         name="type"
                         onChange={handleChange}
@@ -59,8 +29,8 @@ const CreateFormModal = ({togglePopup, openPopup}) => {
                         )}
                     </Select>
                 </FormControl>
-                <TextField id="resume-input" label="Resume" variant="outlined" name="resume" value={state.resume} onChange={handleChange}/>
-                <TextField multiline minRows={5} id="description-input" label="Description" variant="outlined" name="description" value={state.description} onChange={handleChange}/>
+                <TextField id="resume-input" label="Resume" variant="outlined" name="resume" value={resume} onChange={handleChange}/>
+                <TextField multiline minRows={5} id="description-input" label="Description" variant="outlined" name="description" value={description} onChange={handleChange}/>
                 <div className="buttons-container">
                     <Button variant="outlined" onClick={handleCancel}>Cancel</Button>
                     <Button variant="contained" onClick={handleSubmit}>Save</Button>
