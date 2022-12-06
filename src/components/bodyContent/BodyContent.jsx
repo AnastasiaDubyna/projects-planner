@@ -6,8 +6,8 @@ import './bodyContent.css';
 import { useSelector } from 'react-redux';
 
 const BodyContent = () => {
-    const tasks = useSelector(state => state.createTaskReducer.tasks);
-    
+    const tasks = useSelector(state => state.handleTaskReducer.tasks);
+
     return (
         <div className="body-content">
             <Grid container spacing={{xs: 5, sm: 5, md: 3}} justifyContent="space-around">
@@ -20,15 +20,15 @@ const BodyContent = () => {
                                     title={stage.titleName} 
                                     quantity={columnContent.length} 
                                     key={nanoid()} 
-                                    content={columnContent}  />
+                                    content={columnContent}
+                                    stage={stage.keyName}  />
                             </Grid>
                         )
                     }
                 )}
             </Grid> 
         </div>
-    );
-    
+    );  
 }
  
 export default BodyContent;

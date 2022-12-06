@@ -28,7 +28,7 @@ const MainPage = () => {
                 setTaskDescription(value);
                 break;
             default:
-                throw "unknown input";
+                resetTaskState();
         }
     }
 

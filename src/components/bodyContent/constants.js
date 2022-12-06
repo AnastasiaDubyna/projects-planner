@@ -3,4 +3,4 @@ export const stages = [
     { keyName: "inProgress", titleName: "in progress" },
     { keyName: "codeReview", titleName: "code review" },
     { keyName: "done", titleName: "done" }
-]
+];
