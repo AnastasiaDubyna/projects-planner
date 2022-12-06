@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
-import createTaskReducer from "./createTaskReducer";
+import handleTaskReducer from "./handleTaskReducer";
 
 export default combineReducers({
-    createTaskReducer
+    handleTaskReducer
 });

@@ -29,8 +29,22 @@ const CreateFormModal = ({togglePopup, openPopup, handleChange, handleCancel, ha
                         )}
                     </Select>
                 </FormControl>
-                <TextField id="resume-input" label="Resume" variant="outlined" name="resume" value={resume} onChange={handleChange}/>
-                <TextField multiline minRows={5} id="description-input" label="Description" variant="outlined" name="description" value={description} onChange={handleChange}/>
+                <TextField 
+                    id="resume-input" 
+                    label="Resume" 
+                    variant="outlined" 
+                    name="resume" 
+                    value={resume} 
+                    onChange={handleChange}/>
+                <TextField 
+                    multiline 
+                    minRows={5} 
+                    id="description-input" 
+                    label="Description" 
+                    variant="outlined" 
+                    name="description" 
+                    value={description} 
+                    onChange={handleChange}/>
                 <div className="buttons-container">
                     <Button variant="outlined" onClick={handleCancel}>Cancel</Button>
                     <Button variant="contained" onClick={handleSubmit}>Save</Button>
