@@ -5,7 +5,7 @@ import { nanoid } from 'nanoid';
 import './bodyContent.css';
 import { useSelector } from 'react-redux';
 
-const BodyContent = () => {
+const BodyContent = ({openTaskPopup}) => {
     const tasks = useSelector(state => state.handleTaskReducer.tasks);
 
     return (
@@ -21,7 +21,8 @@ const BodyContent = () => {
                                     quantity={columnContent.length} 
                                     key={nanoid()} 
                                     content={columnContent}
-                                    stage={stage.keyName}  />
+                                    stage={stage.keyName}
+                                    toggleTaskPopup={openTaskPopup}  />
                             </Grid>
                         )
                     }

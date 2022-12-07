@@ -8,7 +8,7 @@ import moveTaskAction from '../../redux/actions/moveTaskAction';
 import { useSelector } from 'react-redux';
 
 
-const ColumnBody = ({content, stage}) => {
+const ColumnBody = ({content, stage, toggleTaskPopup}) => {
     const dispatch = useDispatch();
     const [{canDrop, isOver}, drop] = useDrop({
         accept: "card",
@@ -18,8 +18,8 @@ const ColumnBody = ({content, stage}) => {
         })
     })
     return ( 
-        <Box className="column-body" ref={drop}>  
-            {content.map(task => <TaskCard task={task} key={nanoid()}/>)}
+        <Box className="column-body" ref={drop} >  
+            {content.map(task => <TaskCard task={task} key={nanoid()} toggleTaskPopup={toggleTaskPopup} />)}
         </Box>
         
     );
