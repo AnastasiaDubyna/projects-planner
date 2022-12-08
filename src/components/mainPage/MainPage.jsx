@@ -8,6 +8,7 @@ import { nanoid } from 'nanoid';
 import TaskPageModal from '../modals/taskPage/TaskPageModal.jsx';
 import { stages } from '../modals/constants.js';
 import moveTaskAction from '../../redux/actions/moveTaskAction.js';
+import editTaskAction from '../../redux/actions/editTaskAction.js';
 
 
 const MainPage = () => {
@@ -17,8 +18,8 @@ const MainPage = () => {
     const [taskType, setTaskType] = useState("bug");
     const [taskResume, setTaskResume] = useState("");
     const [taskDescription, setTaskDescription] = useState("");
-    const [taskPopupContent, setTaskPopupContent] = useState("");
     const [taskStage, setTaskStage] = useState("");
+    const [taskId, setTaskId] = useState("")
     const dispatch = useDispatch();
 
     const handleFormChange = (e) => {
@@ -67,29 +68,46 @@ const MainPage = () => {
         setTaskResume("");
     }
 
-    const handleTaskPopupOpening = (task) => {
-        setTaskPopupContent(task);
-        setTaskStage(task.stage);
+    const handleTaskPopupOpening = ({resume, description, stage, id, type}) => {
+        setTaskStage(stage);
+        setTaskResume(resume);
+        setTaskDescription(description);
         setOpenTaskPopup(true);
+        setTaskId(id);
+        setTaskType(type);
     }
 
     const handleTaskPopupClosing = () => {
         setOpenTaskPopup(false);
     }
 
-    const handleTaskPopupChange = (e) => {
-        const value = e.target.value;
-
-        switch (e.target.name) {
+    const handleTaskPopupChange = ({target: {value, name}}) => {
+        switch (name) {
             case "stage":
                 setTaskStage(value);
-                // dispatch(moveTaskAction({id: taskPopupContent.id, newStage: value}))
+                break;
+            case "resume":
+                setTaskResume(value);
+                break;
+            case "description":
+                setTaskDescription(value);
+            case "type":
+                setTaskType(value);
                 break;
         }
     }
 
     const handleTaskPopupSubmit = () => {
-
+        dispatch(editTaskAction({
+            id: taskId, 
+            editedTask: {
+                id: taskId, 
+                stage: taskStage, 
+                resume: taskResume, 
+                description: taskDescription, 
+                type: taskType
+            }
+        }))
     }
 
     return (
@@ -108,10 +126,13 @@ const MainPage = () => {
             <TaskPageModal 
                 openPopup={openTaskPopup}
                 onClose={handleTaskPopupClosing}
-                task={taskPopupContent}
                 handleChange={handleTaskPopupChange}
                 currentStage={taskStage}
                 handleSubmit={handleTaskPopupSubmit}
+                resume={taskResume}
+                description={taskDescription}
+                id={taskId}
+                type={taskType}
             />
         </div>
     );
