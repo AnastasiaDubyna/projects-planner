@@ -1,0 +1,7 @@
+.task-id {
+    color: rgb(84 80 80 / 62%);
+}
+
+.select-item, #stage-select {
+    text-transform: capitalize;
+}

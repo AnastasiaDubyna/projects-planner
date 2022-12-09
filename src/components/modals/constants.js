@@ -10,3 +10,10 @@ export const defaultModalStyle = {
 };
 
 export const taskTypes = ["bug", "story", "epic"];
+
+export const stages = [
+    { keyName: "readyForDev", titleName: "ready for dev" },
+    { keyName: "inProgress", titleName: "in progress" },
+    { keyName: "codeReview", titleName: "code review" },
+    { keyName: "done", titleName: "done" }
+];
