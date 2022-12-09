@@ -24,11 +24,27 @@ const TaskPageModal = ({openPopup, onClose, onChange, currentStage, onSubmit, re
                 setDescriptionEditable(false);
                 break;
         }
+    };
+
+    const resetState = () => {
+        setResumeEditable(false);
+        setDescriptionEditable(false);
+    };
+
+    const handleClose = () => {
+        resetState();
+        onClose();
+    };
+
+    const handleSubmit = () => {
+        resetState();
+        onSubmit();
     }
+
     return (
         <Modal
             open={openPopup}
-            onClose={onClose}
+            onClose={handleClose}
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description"
         >
@@ -96,8 +112,8 @@ const TaskPageModal = ({openPopup, onClose, onChange, currentStage, onSubmit, re
                     }
                 </div>
                 <div className="buttons-container">
-                    <Button variant="outlined" onClick={onClose}>Cancel</Button>
-                    <Button variant="contained" onClick={onSubmit}>Save</Button>
+                    <Button variant="outlined" onClick={handleClose}>Cancel</Button>
+                    <Button variant="contained" onClick={handleSubmit}>Save</Button>
                 </div>
             </Box>                
         </Modal>

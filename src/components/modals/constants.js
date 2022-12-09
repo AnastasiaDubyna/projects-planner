@@ -1,7 +1,7 @@
+import React from 'react';
 import BugReportIcon from '@mui/icons-material/BugReport';
 import BoltIcon from '@mui/icons-material/Bolt';
 import BookmarkIcon from '@mui/icons-material/Bookmark';
-import React from 'react';
 
 export const defaultModalStyle = {
     position: 'absolute',

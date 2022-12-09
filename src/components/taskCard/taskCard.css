@@ -16,6 +16,7 @@
     align-items: center;
 }
 
+/* вынести цвета в константу */
 .card-task-id {
     font-size: small;
     color: rgb(84 80 80 / 62%);

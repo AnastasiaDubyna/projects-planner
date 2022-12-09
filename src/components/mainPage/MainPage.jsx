@@ -37,12 +37,12 @@ const MainPage = () => {
             default:
                 resetTaskState();
         }
-    }
+    };
 
     const handleFormCancel = (e) => {
         toggleCreatePopup();
         resetTaskState();
-    }
+    };
 
     const handleFormSubmit = (e) => {
         const newTask = {
@@ -56,17 +56,17 @@ const MainPage = () => {
         dispatch(addTaskAction(newTask));
         toggleCreatePopup();
         resetTaskState();
-    }
+    };
 
     const toggleCreatePopup = () => {
         setOpenCreatePopup(!openCreatePopup);
-    }
+    };
 
     const resetTaskState = () => {
         setTaskType("bug");
         setTaskDescription("");
         setTaskResume("");
-    }
+    };
 
     const handleTaskPopupOpening = ({resume, description, stage, id, type}) => {
         setTaskStage(stage);
@@ -75,11 +75,12 @@ const MainPage = () => {
         setOpenTaskPopup(true);
         setTaskId(id);
         setTaskType(type);
-    }
+    };
 
     const handleTaskPopupClosing = () => {
+        resetTaskState();
         setOpenTaskPopup(false);
-    }
+    };
 
     const handleTaskPopupChange = ({target: {value, name}}) => {
         switch (name) {
@@ -92,22 +93,25 @@ const MainPage = () => {
             case "description":
                 setTaskDescription(value);
                 break;
+            default:
+                resetTaskState();
         }
-    }
+    };
 
     const handleTaskPopupSubmit = () => {
+        const editedTask = {
+            id: taskId, 
+            stage: taskStage, 
+            resume: taskResume, 
+            description: taskDescription, 
+            type: taskType
+        };
         dispatch(editTaskAction({
             id: taskId, 
-            editedTask: {
-                id: taskId, 
-                stage: taskStage, 
-                resume: taskResume, 
-                description: taskDescription, 
-                type: taskType
-            }
-        }))
+            editedTask
+        }));
         handleTaskPopupClosing();
-    }
+    };
 
     return (
         <div className='main-page'>
