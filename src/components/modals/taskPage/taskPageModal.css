@@ -9,6 +9,27 @@
     color: rgb(84 80 80 / 62%);
 }
 
+.task-id span {
+    color: rgb(38 37 37 / 90%);
+    font-weight: 600;
+}
+
 .select-item, #stage-select {
     text-transform: capitalize;
+}
+
+div:has(#resume-cancel, #description-cancel) {
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+}
+
+#resume-cancel, #description-cancel {
+    width: 90px;
+    align-self: flex-end;
+}
+
+div:has(.task-id) {
+    display: flex;
+    justify-content: space-between;
 }

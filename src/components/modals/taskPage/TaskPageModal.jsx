@@ -5,35 +5,26 @@ import { nanoid } from "nanoid";
 import './taskPageModal.css'
 import { useState } from "react";
 
-const TaskPageModal = ({openPopup, onClose, handleChange, currentStage, handleSubmit, resume, description, id, type}) => {
+const TaskPageModal = ({openPopup, onClose, onChange, currentStage, onSubmit, resume, description, id, type}) => {
     const [isResumeEditable, setResumeEditable] = useState(false);
     const [isDescriptionEditable, setDescriptionEditable] = useState(false);
-    const [isTypeEditable, setTypeEditable] = useState(false);
 
     const handleClick = ({target: {id}}) => {
         switch (id) {
             case "resume":
                 setResumeEditable(true);
-                console.log("click");
                 break;
             case "description":
                 setDescriptionEditable(true);
                 break;
-            case "resume-input":
+            case "resume-cancel":
                 setResumeEditable(false);
                 break;
-            case "description-input":
+            case "description-cancel":
                 setDescriptionEditable(false);
-                break;
-            case "type":
-                setTypeEditable(true);
-                break;
-            case "type-select":
-                setTypeEditable(false);
                 break;
         }
     }
-    console.log(type);
     return (
         <Modal
             open={openPopup}
@@ -42,29 +33,10 @@ const TaskPageModal = ({openPopup, onClose, handleChange, currentStage, handleSu
             aria-describedby="modal-modal-description"
         >
             <Box sx={defaultModalStyle} className="task-popup">
-                <Typography className="task-id">Task ID: {id}</Typography>
-                <div onClick={handleClick}>
-                    {
-                        isTypeEditable
-                        ? <FormControl>
-                            <InputLabel id="type-label">Type</InputLabel>
-                            <Select
-                                labelId="type-label"
-                                id="type-select"
-                                value={type}
-                                label="Type"
-                                name="type"
-                                onChange={handleChange}
-                            >
-                                {taskTypes.map(
-                                    type => <MenuItem className="select-item" value={type} key={nanoid()}>{type}</MenuItem>
-                                )}
-                            </Select>
-                        </FormControl>
-                        : <div id="type">{icons[type]}</div>
-                    }
+                <div>
+                    <Typography className="task-id"><span>Task ID: </span>{id}</Typography>
+                    {icons[type]}
                 </div>
-                
                 <FormControl>
                     <InputLabel id="stage-label">Stage</InputLabel>
                     <Select
@@ -73,7 +45,7 @@ const TaskPageModal = ({openPopup, onClose, handleChange, currentStage, handleSu
                         value={currentStage}
                         label="Stage"
                         name="stage"
-                        onChange={handleChange}
+                        onChange={onChange}
                         >
                         {stages.map(
                             stage => <MenuItem className="select-item" value={stage.keyName} key={nanoid()}>{stage.titleName}</MenuItem>
@@ -83,15 +55,18 @@ const TaskPageModal = ({openPopup, onClose, handleChange, currentStage, handleSu
                 <div onClick={handleClick}>
                     {
                         isResumeEditable
-                            ? <TextField 
-                                fullWidth
-                                multiline
-                                id="resume-input" 
-                                label="Resume" 
-                                variant="outlined" 
-                                name="resume" 
-                                value={resume} 
-                                onChange={handleChange}/> 
+                            ? <>
+                                <TextField 
+                                    fullWidth
+                                    multiline
+                                    id="resume-input" 
+                                    label="Resume" 
+                                    variant="outlined" 
+                                    name="resume" 
+                                    value={resume} 
+                                    onChange={onChange}/> 
+                                <Button variant="outlined" id="resume-cancel" onClick={handleClick}>Cancel</Button>
+                            </>
                             : <>
                                 <Typography>Resume</Typography>
                                 <Typography id="resume">{resume}</Typography>
@@ -102,15 +77,18 @@ const TaskPageModal = ({openPopup, onClose, handleChange, currentStage, handleSu
                 <div onClick={handleClick}>
                     {
                         isDescriptionEditable
-                            ? <TextField 
-                                fullWidth
-                                multiline
-                                id="description-input" 
-                                label="Description" 
-                                variant="outlined" 
-                                name="description" 
-                                value={description} 
-                                onChange={handleChange}/> 
+                            ? <>
+                                <TextField 
+                                    fullWidth
+                                    multiline
+                                    id="description-input" 
+                                    label="Description" 
+                                    variant="outlined" 
+                                    name="description" 
+                                    value={description} 
+                                    onChange={onChange}/> 
+                                <Button variant="outlined" id="description-cancel" onClick={handleClick}>Cancel</Button>
+                            </>
                             : <>
                                 <Typography>Description</Typography>
                                 <Typography id="description">{description}</Typography>
@@ -119,7 +97,7 @@ const TaskPageModal = ({openPopup, onClose, handleChange, currentStage, handleSu
                 </div>
                 <div className="buttons-container">
                     <Button variant="outlined" onClick={onClose}>Cancel</Button>
-                    <Button variant="contained" onClick={handleSubmit}>Save</Button>
+                    <Button variant="contained" onClick={onSubmit}>Save</Button>
                 </div>
             </Box>                
         </Modal>

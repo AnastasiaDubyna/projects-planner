@@ -91,8 +91,6 @@ const MainPage = () => {
                 break;
             case "description":
                 setTaskDescription(value);
-            case "type":
-                setTaskType(value);
                 break;
         }
     }
@@ -108,6 +106,7 @@ const MainPage = () => {
                 type: taskType
             }
         }))
+        handleTaskPopupClosing();
     }
 
     return (
@@ -116,23 +115,24 @@ const MainPage = () => {
             <BodyContent openTaskPopup={handleTaskPopupOpening}/>
             <CreateFormModal 
                 openPopup={openCreatePopup}
-                togglePopup={toggleCreatePopup}
-                handleChange={handleFormChange}
-                handleCancel={handleFormCancel}
-                handleSubmit={handleFormSubmit}
                 type={taskType}
                 resume={taskResume}
-                description={taskDescription} />
+                description={taskDescription} 
+                togglePopup={toggleCreatePopup}
+                onChange={handleFormChange}
+                onCancel={handleFormCancel}
+                onSubmit={handleFormSubmit} 
+            />
             <TaskPageModal 
                 openPopup={openTaskPopup}
-                onClose={handleTaskPopupClosing}
-                handleChange={handleTaskPopupChange}
                 currentStage={taskStage}
-                handleSubmit={handleTaskPopupSubmit}
                 resume={taskResume}
-                description={taskDescription}
                 id={taskId}
                 type={taskType}
+                description={taskDescription}
+                onClose={handleTaskPopupClosing}
+                onChange={handleTaskPopupChange}
+                onSubmit={handleTaskPopupSubmit}
             />
         </div>
     );
