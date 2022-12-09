@@ -1,6 +1,7 @@
 import { Card, CardContent, Typography } from '@mui/material';
 import { useDrag } from 'react-dnd';
 import { icons } from './constants';
+import './taskCard.css';
 
 const TaskCard = ({task, toggleTaskPopup}) => {
     const {type, resume, id} = task;
@@ -16,10 +17,13 @@ const TaskCard = ({task, toggleTaskPopup}) => {
     })
 
     return (
-        <Card variant="outlined" ref={drag} role="Handle" onClick={() => toggleTaskPopup(task)}>
-            <CardContent>
+        <Card className="task-card" variant="outlined" ref={drag} role="Handle" onClick={() => toggleTaskPopup(task)}>
+            <CardContent className="task-card-content">
                 <Typography>{resume}</Typography>
-                {icons[type]}
+                <div className='card-task-footer'>
+                    {icons[type]}
+                    <p className='card-task-id'>{id}</p>
+                </div>
             </CardContent>
         </Card>
     );

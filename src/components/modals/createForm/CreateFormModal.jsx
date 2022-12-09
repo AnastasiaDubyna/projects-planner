@@ -4,7 +4,7 @@ import { nanoid } from 'nanoid';
 import './createFormModal.css'
 
 
-const CreateFormModal = ({togglePopup, openPopup, handleChange, handleCancel, handleSubmit, type, resume, description}) => {
+const CreateFormModal = ({togglePopup, openPopup, onChange, onCancel, onSubmit, type, resume, description}) => {
 
     return (
         <Modal
@@ -22,7 +22,7 @@ const CreateFormModal = ({togglePopup, openPopup, handleChange, handleCancel, ha
                         value={type}
                         label="Type"
                         name="type"
-                        onChange={handleChange}
+                        onChange={onChange}
                     >
                         {taskTypes.map(
                             type => <MenuItem className="select-item" value={type} key={nanoid()}>{type}</MenuItem>
@@ -35,7 +35,7 @@ const CreateFormModal = ({togglePopup, openPopup, handleChange, handleCancel, ha
                     variant="outlined" 
                     name="resume" 
                     value={resume} 
-                    onChange={handleChange}/>
+                    onChange={onChange}/>
                 <TextField 
                     multiline 
                     minRows={5} 
@@ -44,10 +44,10 @@ const CreateFormModal = ({togglePopup, openPopup, handleChange, handleCancel, ha
                     variant="outlined" 
                     name="description" 
                     value={description} 
-                    onChange={handleChange}/>
+                    onChange={onChange}/>
                 <div className="buttons-container">
-                    <Button variant="outlined" onClick={handleCancel}>Cancel</Button>
-                    <Button variant="contained" onClick={handleSubmit}>Save</Button>
+                    <Button variant="outlined" onClick={onCancel}>Cancel</Button>
+                    <Button variant="contained" onClick={onSubmit}>Save</Button>
                 </div>
             </Box>                
         </Modal>

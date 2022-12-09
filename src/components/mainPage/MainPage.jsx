@@ -8,6 +8,7 @@ import { nanoid } from 'nanoid';
 import TaskPageModal from '../modals/taskPage/TaskPageModal.jsx';
 import { stages } from '../modals/constants.js';
 import moveTaskAction from '../../redux/actions/moveTaskAction.js';
+import editTaskAction from '../../redux/actions/editTaskAction.js';
 
 
 const MainPage = () => {
@@ -17,8 +18,8 @@ const MainPage = () => {
     const [taskType, setTaskType] = useState("bug");
     const [taskResume, setTaskResume] = useState("");
     const [taskDescription, setTaskDescription] = useState("");
-    const [taskPopupContent, setTaskPopupContent] = useState("");
     const [taskStage, setTaskStage] = useState("");
+    const [taskId, setTaskId] = useState("")
     const dispatch = useDispatch();
 
     const handleFormChange = (e) => {
@@ -36,12 +37,12 @@ const MainPage = () => {
             default:
                 resetTaskState();
         }
-    }
+    };
 
     const handleFormCancel = (e) => {
         toggleCreatePopup();
         resetTaskState();
-    }
+    };
 
     const handleFormSubmit = (e) => {
         const newTask = {
@@ -55,42 +56,62 @@ const MainPage = () => {
         dispatch(addTaskAction(newTask));
         toggleCreatePopup();
         resetTaskState();
-    }
+    };
 
     const toggleCreatePopup = () => {
         setOpenCreatePopup(!openCreatePopup);
-    }
+    };
 
     const resetTaskState = () => {
         setTaskType("bug");
         setTaskDescription("");
         setTaskResume("");
-    }
+    };
 
-    const handleTaskPopupOpening = (task) => {
-        setTaskPopupContent(task);
-        setTaskStage(task.stage);
+    const handleTaskPopupOpening = ({resume, description, stage, id, type}) => {
+        setTaskStage(stage);
+        setTaskResume(resume);
+        setTaskDescription(description);
         setOpenTaskPopup(true);
-    }
+        setTaskId(id);
+        setTaskType(type);
+    };
 
     const handleTaskPopupClosing = () => {
+        resetTaskState();
         setOpenTaskPopup(false);
-    }
+    };
 
-    const handleTaskPopupChange = (e) => {
-        const value = e.target.value;
-
-        switch (e.target.name) {
+    const handleTaskPopupChange = ({target: {value, name}}) => {
+        switch (name) {
             case "stage":
                 setTaskStage(value);
-                // dispatch(moveTaskAction({id: taskPopupContent.id, newStage: value}))
                 break;
+            case "resume":
+                setTaskResume(value);
+                break;
+            case "description":
+                setTaskDescription(value);
+                break;
+            default:
+                resetTaskState();
         }
-    }
+    };
 
     const handleTaskPopupSubmit = () => {
-
-    }
+        const editedTask = {
+            id: taskId, 
+            stage: taskStage, 
+            resume: taskResume, 
+            description: taskDescription, 
+            type: taskType
+        };
+        dispatch(editTaskAction({
+            id: taskId, 
+            editedTask
+        }));
+        handleTaskPopupClosing();
+    };
 
     return (
         <div className='main-page'>
@@ -98,20 +119,24 @@ const MainPage = () => {
             <BodyContent openTaskPopup={handleTaskPopupOpening}/>
             <CreateFormModal 
                 openPopup={openCreatePopup}
-                togglePopup={toggleCreatePopup}
-                handleChange={handleFormChange}
-                handleCancel={handleFormCancel}
-                handleSubmit={handleFormSubmit}
                 type={taskType}
                 resume={taskResume}
-                description={taskDescription} />
+                description={taskDescription} 
+                togglePopup={toggleCreatePopup}
+                onChange={handleFormChange}
+                onCancel={handleFormCancel}
+                onSubmit={handleFormSubmit} 
+            />
             <TaskPageModal 
                 openPopup={openTaskPopup}
-                onClose={handleTaskPopupClosing}
-                task={taskPopupContent}
-                handleChange={handleTaskPopupChange}
                 currentStage={taskStage}
-                handleSubmit={handleTaskPopupSubmit}
+                resume={taskResume}
+                id={taskId}
+                type={taskType}
+                description={taskDescription}
+                onClose={handleTaskPopupClosing}
+                onChange={handleTaskPopupChange}
+                onSubmit={handleTaskPopupSubmit}
             />
         </div>
     );
