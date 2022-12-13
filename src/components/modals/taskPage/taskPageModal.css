@@ -18,7 +18,7 @@
     text-transform: capitalize;
 }
 
-div:has(#resume-cancel, #description-cancel) {
+.input-container {
     display: flex;
     flex-direction: column;
     gap: 13px;

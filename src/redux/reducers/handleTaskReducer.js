@@ -21,7 +21,6 @@ const handleTaskReducer = (state = defaultState, action) => {
         ]
       };
     case EDIT_TASK:
-      console.log(state);
       return {
         ...state,
         tasks: [

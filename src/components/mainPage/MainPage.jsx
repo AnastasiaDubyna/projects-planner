@@ -15,6 +15,8 @@ const MainPage = () => {
     const [openTaskPopup, setOpenTaskPopup] = useState(false);
     const [taskType, setTaskType] = useState("bug");
     const [taskResume, setTaskResume] = useState("");
+    const [taskResumeInputValue, setTaskResumeInputValue] = useState("");
+    const [taskDescriptionInputValue, setTaskDescriptionInputValue] = useState("");
     const [taskDescription, setTaskDescription] = useState("");
     const [taskStage, setTaskStage] = useState("");
     const [taskId, setTaskId] = useState("")
@@ -74,7 +76,9 @@ const MainPage = () => {
     const handleTaskPopupOpening = ({resume, description, stage, id, type}) => {
         setTaskStage(stage);
         setTaskResume(resume);
+        setTaskResumeInputValue(resume);
         setTaskDescription(description);
+        setTaskDescriptionInputValue(description);
         setOpenTaskPopup(true);
         setTaskId(id);
         setTaskType(type);
@@ -91,10 +95,10 @@ const MainPage = () => {
                 setTaskStage(value);
                 break;
             case "resume":
-                setTaskResume(value);
+                setTaskResumeInputValue(value);
                 break;
             case "description":
-                setTaskDescription(value);
+                setTaskDescriptionInputValue(value);
                 break;
             default:
                 resetTaskState();
@@ -114,6 +118,32 @@ const MainPage = () => {
             editedTask
         }));
         handleTaskPopupClosing();
+    };
+
+    const handleTaskPopupInputSave = (id) => {
+        switch (id) {
+            case "resume-save":
+                setTaskResume(taskResumeInputValue);
+                break;
+            case "description-save":
+                setTaskDescription(taskDescriptionInputValue);
+                break;
+            default:
+                resetTaskState();
+        }
+    };
+
+    const handleTaskPopupInputCancel = (id) => {
+        switch (id) {
+            case "resume-cancel":
+                setTaskResumeInputValue(taskResume);
+                break;
+            case "description-cancel":
+                setTaskDescriptionInputValue(taskDescription);
+                break;
+            default:
+                resetTaskState();
+        }
     };
 
     return (
@@ -139,12 +169,16 @@ const MainPage = () => {
                 openPopup={openTaskPopup}
                 currentStage={taskStage}
                 resume={taskResume}
+                resumeInputValue={taskResumeInputValue}
                 id={taskId}
                 type={taskType}
                 description={taskDescription}
+                descriptionInputValue={taskDescriptionInputValue}
                 onClose={handleTaskPopupClosing}
                 onChange={handleTaskPopupChange}
                 onSubmit={handleTaskPopupSubmit}
+                onSave={handleTaskPopupInputSave}
+                onCancel={handleTaskPopupInputCancel}
             />
         </div>
     );
