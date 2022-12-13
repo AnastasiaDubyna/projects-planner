@@ -6,8 +6,6 @@ import { useDispatch } from 'react-redux';
 import addTaskAction from '../../redux/actions/addTaskAction';
 import { nanoid } from 'nanoid';
 import TaskPageModal from '../modals/taskPage/TaskPageModal.jsx';
-import { stages } from '../modals/constants.js';
-import moveTaskAction from '../../redux/actions/moveTaskAction.js';
 import editTaskAction from '../../redux/actions/editTaskAction.js';
 
 
@@ -20,7 +18,12 @@ const MainPage = () => {
     const [taskDescription, setTaskDescription] = useState("");
     const [taskStage, setTaskStage] = useState("");
     const [taskId, setTaskId] = useState("")
+    const [searchValue, setSearchValue] = useState("");
     const dispatch = useDispatch();
+
+    const handleSearchInputChange = ({target: {value}}) => {
+        setSearchValue(value);
+    };
 
     const handleFormChange = (e) => {
         const value = e.target.value;
@@ -39,12 +42,12 @@ const MainPage = () => {
         }
     };
 
-    const handleFormCancel = (e) => {
+    const handleFormCancel = () => {
         toggleCreatePopup();
         resetTaskState();
     };
 
-    const handleFormSubmit = (e) => {
+    const handleFormSubmit = () => {
         const newTask = {
             type: taskType,
             resume: taskResume, 
@@ -115,8 +118,13 @@ const MainPage = () => {
 
     return (
         <div className='main-page'>
-            <Header togglePopup={toggleCreatePopup}/>
-            <BodyContent openTaskPopup={handleTaskPopupOpening}/>
+            <Header 
+                togglePopup={toggleCreatePopup} 
+                onChange={handleSearchInputChange}
+                searchValue={searchValue}/>
+            <BodyContent 
+                openTaskPopup={handleTaskPopupOpening}
+                searchValue={searchValue}/>
             <CreateFormModal 
                 openPopup={openCreatePopup}
                 type={taskType}
