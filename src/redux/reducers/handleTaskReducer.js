@@ -1,8 +1,8 @@
 import { tasksData } from '../../testData';
-import { ADD_TASK, EDIT_TASK, MOVE_TASK } from '../constants';
+import { ADD_TASK, EDIT_TASK, MOVE_TASK, GET_TASKS } from '../constants';
 
 const defaultState = {
-    tasks: tasksData
+    tasks: []
 };
 
 const handleTaskReducer = (state = defaultState, action) => {
@@ -27,6 +27,12 @@ const handleTaskReducer = (state = defaultState, action) => {
           ...state.tasks.filter(task => task.id !== action.payload.id),
           action.payload.editedTask
         ]
+      }
+    case GET_TASKS:
+      return {
+        ...state, 
+        tasks: action.payload.data,
+        source: "from axios"
       }
     default:
       return state;
