@@ -5,7 +5,6 @@ import './columnBody.css';
 import { useDrop } from 'react-dnd';
 import { useDispatch } from 'react-redux';
 import moveTaskAction from '../../redux/actions/moveTaskAction';
-import { useSelector } from 'react-redux';
 
 
 const ColumnBody = ({content, stage, toggleTaskPopup}) => {
