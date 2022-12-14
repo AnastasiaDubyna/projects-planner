@@ -3,11 +3,18 @@ import Column from '../column/Column';
 import { stages } from './constants';
 import { nanoid } from 'nanoid';
 import './bodyContent.css';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import getTasksAction from '../../redux/actions/getTasksAction';
 
 const BodyContent = ({openTaskPopup, searchValue}) => {
     const tasks = useSelector(state => state.handleTaskReducer.tasks);
+    const dispatch = useDispatch();
 
+    useEffect(() => {
+        dispatch(getTasksAction());
+    }, []);
+    
     return (
         <div className="body-content">
             <Grid container spacing={{xs: 5, sm: 5, md: 3}} justifyContent="space-around">
