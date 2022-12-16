@@ -1,8 +1,9 @@
-import { tasksData } from '../../testData';
-import { ADD_TASK, EDIT_TASK, MOVE_TASK, GET_TASKS } from '../constants';
+import { ADD_TASK, EDIT_TASK, MOVE_TASK, GET_TASKS, POST_TASK, LOADING_ERROR, LOADING_SUCCESS, LOADING_START } from '../constants';
 
 const defaultState = {
-    tasks: []
+    tasks: [],
+    isLoading: false,
+    isLoadingError: false
 };
 
 const handleTaskReducer = (state = defaultState, action) => {
@@ -31,8 +32,27 @@ const handleTaskReducer = (state = defaultState, action) => {
     case GET_TASKS:
       return {
         ...state, 
-        tasks: action.payload.data,
-        source: "from axios"
+        tasks: action.payload.data
+      }
+    case POST_TASK:
+      return {
+        ...state
+      }
+    case LOADING_START:
+      return {
+          ...state, 
+          isLoading: true
+      }
+    case LOADING_SUCCESS:
+      return {
+          ...state, 
+          isLoading: false,
+      }
+    case LOADING_ERROR:
+      return {
+          ...state, 
+          isLoading: false, 
+          isLoadingError: true
       }
     default:
       return state;

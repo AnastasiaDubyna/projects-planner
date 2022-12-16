@@ -1,8 +1,6 @@
 import { GET_TASKS } from '../constants';
 import { fetchData } from '../../api';
-import loadingStartAction from './loadingStartAction';
-import loadingErrorAction from './loadingErrorAction';
-import loadingSuccessAction from './loadingSuccessAction';
+import { LOADING_ERROR, LOADING_SUCCESS, LOADING_START } from '../constants';
 
 const getTasksAction = () => async dispatch => {
     dispatch(loadingStartAction());
@@ -18,5 +16,9 @@ const getTasksAction = () => async dispatch => {
         dispatch(loadingErrorAction());
     }   
 };
+
+const loadingStartAction = () => ({type: LOADING_START});
+const loadingSuccessAction = () => ({type: LOADING_SUCCESS});
+const loadingErrorAction = () => ({type: LOADING_ERROR});
 
 export default getTasksAction;
