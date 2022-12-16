@@ -34,8 +34,7 @@ const TaskPageModal = ({openPopup, onClose, onChange, onCancel, onSave, currentS
                 onSave(id);
                 break;
             default:
-                setResumeEditable(false);
-                setDescriptionEditable(false);
+                break;
         }
     };
 

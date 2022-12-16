@@ -8,6 +8,7 @@ import { nanoid } from 'nanoid';
 import TaskPageModal from '../modals/taskPage/TaskPageModal.jsx';
 import editTaskAction from '../../redux/actions/editTaskAction.js';
 import postTaskAction from '../../redux/actions/postTaskAction.js';
+import putTaskAction from '../../redux/actions/putTaskAction.js';
 import { useEffect } from 'react';
 
 
@@ -23,6 +24,16 @@ const MainPage = () => {
     const [taskId, setTaskId] = useState("")
     const [searchValue, setSearchValue] = useState("");
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        const newTask = {
+            type: "bug",
+            resume: "resume", 
+            description: "description",
+            stage: "readyForDev"
+        };
+        dispatch(postTaskAction({newTask: {...newTask, id: nanoid(5)}}));
+    }, []);
 
     const handleSearchInputChange = ({target: {value}}) => {
         setSearchValue(value);
@@ -114,7 +125,7 @@ const MainPage = () => {
             description: taskDescription, 
             type: taskType
         };
-        dispatch(editTaskAction({
+        dispatch(putTaskAction({
             id: taskId, 
             editedTask
         }));

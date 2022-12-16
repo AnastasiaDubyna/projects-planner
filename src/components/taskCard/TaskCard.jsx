@@ -10,6 +10,7 @@ const TaskCard = ({task, toggleTaskPopup}) => {
         item: {
             type: "card",
             id: id, 
+            taskData: task
         },
         collect: (monitor) => ({
             isDragging: !!monitor.isDragging()

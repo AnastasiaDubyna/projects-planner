@@ -4,14 +4,14 @@ import TaskCard from '../taskCard/TaskCard';
 import './columnBody.css';
 import { useDrop } from 'react-dnd';
 import { useDispatch } from 'react-redux';
-import moveTaskAction from '../../redux/actions/moveTaskAction';
+import putTaskAction from '../../redux/actions/putTaskAction';
 
 
 const ColumnBody = ({content, stage, toggleTaskPopup}) => {
     const dispatch = useDispatch();
     const [{canDrop, isOver}, drop] = useDrop({
         accept: "card",
-        drop: (item) => dispatch(moveTaskAction({id: item.id, newStage: stage})),
+        drop: (item) => dispatch(putTaskAction({id: item.id, editedTask: {...item.taskData, stage}})),
         collect: (monitor) => ({
             isOver: !!monitor.isOver()
         })
