@@ -7,6 +7,8 @@ import addTaskAction from '../../redux/actions/addTaskAction';
 import { nanoid } from 'nanoid';
 import TaskPageModal from '../modals/taskPage/TaskPageModal.jsx';
 import editTaskAction from '../../redux/actions/editTaskAction.js';
+import postTaskAction from '../../redux/actions/postTaskAction.js';
+import { useEffect } from 'react';
 
 
 const MainPage = () => {
@@ -57,7 +59,7 @@ const MainPage = () => {
             id: nanoid()
         }; 
 
-        dispatch(addTaskAction(newTask));
+        dispatch(postTaskAction({newTask}));
         toggleCreatePopup();
         resetTaskState();
     };

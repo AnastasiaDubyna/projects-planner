@@ -5,7 +5,7 @@ import { LOADING_ERROR, LOADING_SUCCESS, LOADING_START } from '../constants';
 const getTasksAction = () => async dispatch => {
     dispatch(loadingStartAction());
     try {
-        const {data} = await fetchData("/getTasks/all");
+        const {data} = await fetchData("/tasks/getAll");
         dispatch({
             type: GET_TASKS,
             payload: {data: data.tasks}

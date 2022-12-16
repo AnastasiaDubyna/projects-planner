@@ -9,6 +9,8 @@ export const fetchData = (path) => {
     return axios.get(link);
 };
 
-export const postData = (path) => {
-    return axios.post();
+export const postData = (path, data) => {
+    const link = `${baseLink}${path}`;
+
+    return axios.post(link, data);
 }; 
