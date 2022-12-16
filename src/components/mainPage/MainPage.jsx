@@ -10,7 +10,6 @@ import editTaskAction from '../../redux/actions/editTaskAction.js';
 
 
 const MainPage = () => {
-
     const [openCreatePopup, setOpenCreatePopup] = useState(false);
     const [openTaskPopup, setOpenTaskPopup] = useState(false);
     const [taskType, setTaskType] = useState("bug");

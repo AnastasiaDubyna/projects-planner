@@ -3,11 +3,12 @@ import axios from 'axios';
 const baseLink = process.env.REACT_APP_API_LINK;
 
 
-export const fetchData = () => {
-    const link = baseLink + "/getTasks/all";
+export const fetchData = (path) => {
+    const link = `${baseLink}${path}`;
+
     return axios.get(link);
 };
 
-export const postData = () => {
+export const postData = (path) => {
     return axios.post();
 }; 
