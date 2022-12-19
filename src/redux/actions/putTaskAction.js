@@ -1,12 +1,12 @@
-import { editData } from "../../api"
+import { putData } from "../../api"
 import getTasksAction from "./getTasksAction";
 
 const putTaskAction = ({id, editedTask}) => async (dispatch) => {
-    const response = await (await editData(`/tasks/editTask/${id}`, editedTask)).data;
-    if (response.success) {
+    const {success, errorMessage} = await (await putData(`/tasks/editTask/${id}`, editedTask)).data;
+    if (success) {
         dispatch(getTasksAction());
     } else {
-        console.log(response.errorMessage);
+        console.log(errorMessage);
     }
 }
 
