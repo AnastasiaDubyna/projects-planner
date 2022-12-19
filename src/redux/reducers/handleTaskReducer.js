@@ -34,10 +34,6 @@ const handleTaskReducer = (state = defaultState, action) => {
         ...state, 
         tasks: action.payload.data
       }
-    case POST_TASK:
-      return {
-        ...state
-      }
     case LOADING_START:
       return {
           ...state, 
