@@ -14,3 +14,9 @@ export const postData = (path, data) => {
 
     return axios.post(link, data);
 }; 
+
+export const editData = (path, data) => {
+    const link = `${baseLink}${path}`;
+
+    return axios.put(link, data);
+}
