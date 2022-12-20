@@ -37,7 +37,7 @@ const MainPage = () => {
 
     const handleSearchInputChange = ({target: {value}}) => {
         setSearchValue(value);
-        if (!!value) {
+        if (value) {
             dispatch(searchTasksAction(value));
         } else {
             dispatch(getTasksAction());
