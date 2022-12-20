@@ -34,7 +34,7 @@ const BodyContent = ({openTaskPopup, searchValue}) => {
                     {stages.map(
                         (stage) => {
                             const columnContent = tasks.filter(
-                                task => task.stage === stage.keyName && task.resume.includes(searchValue)
+                                task => task.stage === stage.keyName
                             );
                             return (
                                 <Grid item xs={12} sm={6} md={3} key={nanoid()}>
