@@ -8,6 +8,8 @@ import TaskPageModal from '../modals/taskPage/TaskPageModal.jsx';
 import postTaskAction from '../../redux/actions/postTaskAction.js';
 import putTaskAction from '../../redux/actions/putTaskAction.js';
 import { useEffect } from 'react';
+import searchTasksAction from '../../redux/actions/searchTasksAction.js';
+import getTasksAction from '../../redux/actions/getTasksAction.js';
 
 
 const MainPage = () => {
@@ -35,6 +37,11 @@ const MainPage = () => {
 
     const handleSearchInputChange = ({target: {value}}) => {
         setSearchValue(value);
+        if (!!value) {
+            dispatch(searchTasksAction(value));
+        } else {
+            dispatch(getTasksAction());
+        }
     };
 
     const handleFormChange = (e) => {
@@ -163,8 +170,7 @@ const MainPage = () => {
                 onChange={handleSearchInputChange}
                 searchValue={searchValue}/>
             <BodyContent 
-                openTaskPopup={handleTaskPopupOpening}
-                searchValue={searchValue}/>
+                openTaskPopup={handleTaskPopupOpening}/>
             <CreateFormModal 
                 openPopup={openCreatePopup}
                 type={taskType}

@@ -1,4 +1,5 @@
 import { Button, Grid } from '@mui/material/';
+import { DebounceInput } from 'react-debounce-input';
 import './header.css';
 
 const Header = ({togglePopup, onChange, searchValue}) => {  
@@ -14,7 +15,12 @@ const Header = ({togglePopup, onChange, searchValue}) => {
                 <Button variant="contained" onClick={togglePopup}>Create</Button>
             </Grid>
             <Grid item xs={12} sm={6} md={2} lg={2}>
-                <input  type="text" value={searchValue} onChange={onChange} placeholder="Search"/>
+                <DebounceInput
+                    debounceTimeout={300}
+                    onChange={onChange}
+                    value={searchValue}
+                    placeholder="Search"
+                    />
             </Grid>
         </Grid>
     );
