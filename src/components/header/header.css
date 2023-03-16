@@ -1,0 +1,39 @@
+.header {
+    padding: 25px 40px;
+    border-bottom: 2px solid rgba(233, 233, 233, 0.479);
+}
+
+.header-logo {
+    display: flex;
+    grid-column: span 8;
+    align-items: center;
+}
+
+.header-logo h1,
+.header-logo span {
+    font-size: 22px;
+    color: rgb(16 45 217);
+
+}
+
+.create-button {
+    grid-column: 11;
+    width: 100px;
+    justify-self: end;
+    padding: 5px;
+    height: 35px;
+    text-align: center;
+    background-color: rgb(16 45 217);
+    color: white;
+    border-radius: 5px;
+}
+
+.header input {
+    grid-column: 12;
+    justify-self: end;
+    padding: 10px;
+    height: 35px;
+    width: auto;
+    border-radius: 5px;
+    border: 2px solid rgb(233 233 233);
+}

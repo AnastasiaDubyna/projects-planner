@@ -1,0 +1,23 @@
+.task-card {
+    margin-bottom: 10px;
+}
+
+.task-card-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-bottom: 5px !important;
+    gap: 15px;
+}
+
+.card-task-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* вынести цвета в константу */
+.card-task-id {
+    font-size: small;
+    color: rgb(84 80 80 / 62%);
+}

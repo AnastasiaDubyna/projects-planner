@@ -1,0 +1,11 @@
+.column-body {
+    overflow: auto;
+    height: 600px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: rgb(233, 233, 233);
+}
+
+.column-body::-webkit-scrollbar {
+    display: none;
+}

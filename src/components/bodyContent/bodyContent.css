@@ -1,0 +1,13 @@
+.body-content {
+    margin: auto;
+    margin-top: 50px;
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+ 
+.error-message {
+    font-size: 40px;
+    color: rgba(128, 128, 128, 0.644);
+}
